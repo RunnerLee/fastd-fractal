@@ -1,0 +1,28 @@
+{
+    "name": "runner/fastd-fractal",
+    "description": "fractal for FastD framework",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "RunnerLee",
+            "email": "runnerleer@gmail.com"
+        }
+    ],
+    "require": {
+        "illuminate/pagination": "^5.5",
+        "fastd/fastd": "~3.0",
+        "league/fractal": "^0.17.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^5.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Runner\\FastdFractal\\": "src"
+        },
+        "files": [
+            "src/helpers.php"
+        ]
+    }
+}
