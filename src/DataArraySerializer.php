@@ -60,12 +60,12 @@ class DataArraySerializer extends ArraySerializer
     public function paginator(PaginatorInterface $paginator)
     {
         $pagination = [
-            'total' => $paginator->getTotal(),
-            'per_page' => $paginator->getPerPage(),
-            'current' => $paginator->getCurrentPage(),
+            'total'      => $paginator->getTotal(),
+            'per_page'   => $paginator->getPerPage(),
+            'current'    => $paginator->getCurrentPage(),
             'total_page' => $paginator->getLastPage(),
-            'from' => $paginator->getPaginator()->firstItem(),
-            'to' => $paginator->getPaginator()->lastItem(),
+            'from'       => $paginator->getPaginator()->firstItem(),
+            'to'         => $paginator->getPaginator()->lastItem(),
         ];
 
         return [
