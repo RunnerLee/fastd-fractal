@@ -22,7 +22,7 @@ class JsonResponse extends Response
      * @param int   $status
      * @param array $headers
      */
-    public function __construct(array $data, $status = 200, array $headers = array())
+    public function __construct(array $data, $status = 200, array $headers = [])
     {
         parent::__construct($this->formatData($data), $status, $headers);
     }
