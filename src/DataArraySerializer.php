@@ -64,8 +64,8 @@ class DataArraySerializer extends ArraySerializer
             'per_page'   => $paginator->getPerPage(),
             'current'    => $paginator->getCurrentPage(),
             'total_page' => $paginator->getLastPage(),
-            'from'       => $paginator->getPaginator()->firstItem(),
-            'to'         => $paginator->getPaginator()->lastItem(),
+            'from'       => $paginator->getPaginator()->firstItem() ?: 0,
+            'to'         => $paginator->getPaginator()->lastItem() ?: 0,
         ];
 
         return [
