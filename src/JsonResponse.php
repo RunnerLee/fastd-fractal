@@ -24,27 +24,6 @@ class JsonResponse extends Response
      */
     public function __construct(array $data, $status = 200, array $headers = [])
     {
-        parent::__construct($this->formatData($data), $status, $headers);
-    }
-
-    /**
-     * @param array $data
-     *
-     * @return array
-     */
-    protected function formatData(array $data)
-    {
-        array_walk(
-            $data,
-            function (&$value) {
-                if (is_array($value)) {
-                    $value = $this->formatData($value);
-                } elseif (null === $value) {
-                    $value = '';
-                }
-            }
-        );
-
-        return $data;
+        parent::__construct($data, $status, $headers);
     }
 }
