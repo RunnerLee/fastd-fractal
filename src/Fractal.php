@@ -83,6 +83,16 @@ class Fractal
     }
 
     /**
+     * @param $transformer
+     *
+     * @return TransformerAbstract
+     */
+    public function transformer($transformer)
+    {
+        return $this->formatTransformer($transformer);
+    }
+
+    /**
      * @param ResourceAbstract $resource
      * @param int              $status
      *

@@ -10,6 +10,7 @@
         }
     ],
     "require": {
+        "php": "^7.1",
         "illuminate/pagination": "^5.5",
         "fastd/fastd": "~3.0",
         "league/fractal": "^0.17.0"
