@@ -93,6 +93,14 @@ class Fractal
     }
 
     /**
+     * @return Manager
+     */
+    public function manager()
+    {
+        return $this->manager;
+    }
+
+    /**
      * @param ResourceAbstract $resource
      * @param int              $status
      *
