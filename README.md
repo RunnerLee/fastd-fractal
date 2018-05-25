@@ -7,9 +7,9 @@
 <?php
 namespace Transformer;
 
-use League\Fractal\TransformerAbstract;
+use Runner\FastdFractal\AbstractTransformer;
 
-class AppTransformer extends TransformerAbstract
+class AppTransformer extends AbstractTransformer
 {
     public function transform($app)
     {
