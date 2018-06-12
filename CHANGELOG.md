@@ -8,3 +8,13 @@
 ### Added
 - Fractal 增加 transformer() 方法及 manager() 方法
 - 增加 AbstractTransformer, 重写 item() / collection() / primitive()
+
+## [2.0.0] - 2018-06-12
+### Added
+- 增加 Fractal::transformer() 静态方法
+
+### Changed
+- fractal() 辅助函数改为创建 Fractal 实例
+
+### Removed
+- 移除 FractalServiceProvider
