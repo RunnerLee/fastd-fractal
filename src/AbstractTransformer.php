@@ -22,7 +22,7 @@ class AbstractTransformer extends TransformerAbstract
     {
         return parent::primitive(
             $data,
-            is_null($transformer) ? null : fractal()->transformer($transformer),
+            is_null($transformer) ? null : Fractal::transformer($transformer),
             $resourceKey
         );
     }
@@ -36,7 +36,7 @@ class AbstractTransformer extends TransformerAbstract
      */
     public function item($data, $transformer, $resourceKey = null)
     {
-        return parent::item($data, fractal()->transformer($transformer), $resourceKey);
+        return parent::item($data, Fractal::transformer($transformer), $resourceKey);
     }
 
     /**
@@ -48,6 +48,6 @@ class AbstractTransformer extends TransformerAbstract
      */
     public function collection($data, $transformer, $resourceKey = null)
     {
-        return parent::collection($data, fractal()->transformer($transformer), $resourceKey);
+        return parent::collection($data, Fractal::transformer($transformer), $resourceKey);
     }
 }

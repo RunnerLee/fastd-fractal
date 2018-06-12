@@ -20,7 +20,7 @@ class Fractal
     /**
      * @var TransformerAbstract[]
      */
-    protected $transformers = [];
+    protected static $transformers = [];
 
     /**
      * @var Manager
@@ -45,7 +45,7 @@ class Fractal
     public function item($resource, $transformer, $status = Response::HTTP_OK)
     {
         return $this->response(
-            new Item($resource, $this->formatTransformer($transformer)),
+            new Item($resource, self::transformer($transformer)),
             $status
         );
     }
@@ -60,7 +60,7 @@ class Fractal
     public function collection($resource, $transformer, $status = Response::HTTP_OK)
     {
         return $this->response(
-            new Collection($resource, $this->formatTransformer($transformer)),
+            new Collection($resource, self::transformer($transformer)),
             $status
         );
     }
@@ -74,7 +74,7 @@ class Fractal
      */
     public function paginator($paginator, $transformer, $status = Response::HTTP_OK)
     {
-        $collection = new Collection($paginator->getCollection(), $this->formatTransformer($transformer));
+        $collection = new Collection($paginator->getCollection(), self::transformer($transformer));
 
         return $this->response(
             $collection->setPaginator(new IlluminatePaginatorAdapter($paginator)),
@@ -87,9 +87,16 @@ class Fractal
      *
      * @return TransformerAbstract
      */
-    public function transformer($transformer)
+    public static function transformer($transformer)
     {
-        return $this->formatTransformer($transformer);
+        if (is_object($transformer)) {
+            return $transformer;
+        }
+        if (!array_key_exists(self::$transformers, $transformer)) {
+            self::$transformers[$transformer] = new $transformer();
+        }
+
+        return self::$transformers[$transformer];
     }
 
     /**
@@ -112,22 +119,5 @@ class Fractal
             $this->manager->createData($resource)->toArray(),
             $status
         );
-    }
-
-    /**
-     * @param $transformer
-     *
-     * @return TransformerAbstract
-     */
-    protected function formatTransformer($transformer)
-    {
-        if (is_object($transformer)) {
-            return $transformer;
-        }
-        if (!array_key_exists($transformer, $this->transformers)) {
-            $this->transformers[$transformer] = new $transformer();
-        }
-
-        return $this->transformers[$transformer];
     }
 }

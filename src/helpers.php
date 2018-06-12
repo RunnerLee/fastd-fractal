@@ -12,6 +12,6 @@ if (!function_exists('fractal')) {
      */
     function fractal()
     {
-        return app()->get('fractal');
+        return new Fractal();
     }
 }
