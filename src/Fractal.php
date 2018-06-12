@@ -17,8 +17,8 @@ use League\Fractal\Resource\ResourceAbstract;
 use League\Fractal\TransformerAbstract;
 
 /**
- * Class Fractal
- * @package Runner\FastdFractal
+ * Class Fractal.
+ *
  * @method Fractal parseIncludes($includes)
  * @method Fractal parseExcludes($excludes)
  * @method Fractal parseFieldsets(array $fieldsets)
@@ -132,12 +132,14 @@ class Fractal
     /**
      * @param $name
      * @param mixed $arguments
+     *
      * @return mixed
      */
     public function __call($name, $arguments)
     {
-        if (in_array($name, ['parseIncludes', 'parseExcludes', 'parseFieldsets',])) {
+        if (in_array($name, ['parseIncludes', 'parseExcludes', 'parseFieldsets'])) {
             call_user_func_array([$this->manager, $name], $arguments);
+
             return $this;
         }
 
