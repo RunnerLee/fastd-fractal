@@ -7,6 +7,7 @@
 
 namespace Runner\FastdFractal;
 
+use BadMethodCallException;
 use FastD\Http\Response;
 use League\Fractal\Manager;
 use League\Fractal\Pagination\IlluminatePaginatorAdapter;
@@ -119,5 +120,21 @@ class Fractal
             $this->manager->createData($resource)->toArray(),
             $status
         );
+    }
+
+    /**
+     * @param $name
+     * @param mixed $arguments
+     * @return mixed
+     */
+    public function __call($name, $arguments)
+    {
+        if (method_exists($this->manager, $name)) {
+            return call_user_func_array([$this->manager, $name], $arguments);
+        }
+
+        $class = get_class($this);
+
+        throw new BadMethodCallException("Call to undefined method {$class}::{$name}()");
     }
 }
