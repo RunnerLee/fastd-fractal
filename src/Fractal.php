@@ -16,6 +16,13 @@ use League\Fractal\Resource\Item;
 use League\Fractal\Resource\ResourceAbstract;
 use League\Fractal\TransformerAbstract;
 
+/**
+ * Class Fractal
+ * @package Runner\FastdFractal
+ * @method Fractal parseIncludes($includes)
+ * @method Fractal parseExcludes($excludes)
+ * @method Fractal parseFieldsets(array $fieldsets)
+ */
 class Fractal
 {
     /**
@@ -129,8 +136,9 @@ class Fractal
      */
     public function __call($name, $arguments)
     {
-        if (method_exists($this->manager, $name)) {
-            return call_user_func_array([$this->manager, $name], $arguments);
+        if (in_array($name, ['parseIncludes', 'parseExcludes', 'parseFieldsets',])) {
+            call_user_func_array([$this->manager, $name], $arguments);
+            return $this;
         }
 
         $class = get_class($this);
