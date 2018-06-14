@@ -100,7 +100,7 @@ class Fractal
         if (is_object($transformer)) {
             return $transformer;
         }
-        if (!array_key_exists(self::$transformers, $transformer)) {
+        if (!array_key_exists($transformer, self::$transformers)) {
             self::$transformers[$transformer] = new $transformer();
         }
 
